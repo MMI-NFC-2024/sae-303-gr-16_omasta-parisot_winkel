@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <h1 class="text-2xl font-semibold mb-4 text-center">
+        Carte de France — Pauvreté et Accessibilité Médicale
+    </h1>
+
+    <div id="plot-container" class="flex justify-center"></div>
+
+    <!-- On charge le script côté client -->
+    <script src="/scripts/pauvrete-apl.js" type="module"></script>
+</Layout>

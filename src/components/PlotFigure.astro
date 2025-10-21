@@ -1,9 +1,14 @@
 ---
-import * as Plot from "@observablehq/plot";
-import { JSDOM } from "jsdom";
 const { options } = Astro.props;
-
-const plot = Plot.plot({ ...options, document: new JSDOM("").window.document });
+const optionsJSON = JSON.stringify(options);
+const id = `plot-${Math.random().toString(36).slice(2)}`; // id unique
 ---
 
-<div set:html={plot.outerHTML} />
+<div id={id}></div>
+
+<script type="module" client:load>
+    import { renderPlot } from "/scripts/renderPlot.js";
+
+    const options = JSON.parse({ optionsJSON });
+    renderPlot("{id}", options);
+</script>

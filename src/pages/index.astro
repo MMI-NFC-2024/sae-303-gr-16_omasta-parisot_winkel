@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <h1 class="text-2xl font-semibold mb-4 text-center">
+        Carte de France — Pauvreté et Accessibilité Médicale
+    </h1>
+
+    <div id="plot-container" class="flex justify-center"></div>
+    <script src="/scripts/pauvrete-apl.js" type="module"></script>
+
+    <!-- graph2 -->
+    <div id="barplot-container" class="flex flex-col items-center gap-4 mt-8">
+    </div>
+    <script src="/scripts/apl-bar.js" type="module"></script>
+    <!-- graph3 -->
+    <div id="hospital-map-container" class="flex justify-center mt-8"></div>
+    <script src="/scripts/hospital-map.js" type="module"></script>
+    <!-- graph4 -->
+    <div id="plot-container-2" class="flex justify-center mt-8"></div>
+    <script src="/scripts/discordance-apl.js" type="module"></script>
+    <!-- graph5 -->
+    <div id="plot-container-3" class="flex justify-center mt-8"></div>
+    <script src="/scripts/hospital-bar.js" type="module"></script>
+    <!-- graph6 -->
+    <div id="plot-container-4" class="flex justify-center mt-8"></div>
+    <script src="/scripts/all-hospital.js" type="module"></script>
+    <!-- tableau -->
+    <h2 class="text-xl font-semibold mt-8 mb-4 text-center">
+        Tableau des départements
+    </h2>
+    <div id="table-container" class="flex justify-center"></div>
+    <script src="/scripts/dept-score-table.js" type="module"></script>
+</Layout>
+    

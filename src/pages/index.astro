@@ -3,34 +3,1186 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-    <h1 class="text-2xl font-semibold mb-4 text-center">
-        Carte de France — Pauvreté et Accessibilité Médicale
-    </h1>
+    <!-- Hero Section -->
+    <div class="bg-white border-b border-gray-200 mb-16">
+        <div class="max-w-5xl mx-auto px-6 py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h1
+                    class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight"
+                >
+                    Un accès aux soins en France métropolitaine contrasté
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-medium text-gray-600 mb-8">
+                    Santé et Territoire — Comment guider les collectivités avec
+                    un diagnostic santé ?
+                </h2>
+            </div>
 
-    <div id="plot-container" class="flex justify-center"></div>
-    <script src="/scripts/pauvrete-apl.js" type="module"></script>
-
-    <!-- graph2 -->
-    <div id="barplot-container" class="flex flex-col items-center gap-4 mt-8">
+            <div
+                class="space-y-6 text-gray-700 leading-relaxed text-lg max-w-4xl mx-auto"
+            >
+                <p class="text-justify">
+                    Les inégalités territoriales en matière de santé sont un
+                    enjeu majeur des politiques publiques. L'accès aux soins, la
+                    densité médicale et la présence d'infrastructures
+                    hospitalières varient fortement selon les départements, tout
+                    comme les indicateurs socio-économiques (revenu, pauvreté,
+                    emploi).
+                </p>
+                <p class="text-justify">
+                    Nous avons donc choisi un axe de communication, qui est de <strong
+                        class="font-semibold text-gray-900"
+                        >mettre en évidence les disparités territoriales entre
+                        accessibilité médicale et vulnérabilité socio-économique</strong
+                    >, afin de fournir aux collectivités locales un diagnostic
+                    territorial utile à la planification sanitaire.
+                </p>
+                <p class="text-justify">
+                    Cet axe vise à comparer l'offre de soins (APL, hôpitaux) et
+                    les besoins potentiels (taux de pauvreté, population) pour
+                    détecter les zones de discordance, c'est-à-dire les
+                    territoires où les ressources médicales ne correspondent pas
+                    à la situation sociale.
+                </p>
+            </div>
+        </div>
     </div>
-    <script src="/scripts/apl-bar.js" type="module"></script>
-    <!-- graph3 -->
-    <div id="hospital-map-container" class="flex justify-center mt-8"></div>
-    <script src="/scripts/hospital-map.js" type="module"></script>
-    <!-- graph4 -->
-    <div id="plot-container-2" class="flex justify-center mt-8"></div>
-    <script src="/scripts/discordance-apl.js" type="module"></script>
-    <!-- graph5 -->
-    <div id="plot-container-3" class="flex justify-center mt-8"></div>
-    <script src="/scripts/hospital-bar.js" type="module"></script>
-    <!-- graph6 -->
-    <div id="plot-container-4" class="flex justify-center mt-8"></div>
-    <script src="/scripts/all-hospital.js" type="module"></script>
-    <!-- tableau -->
-    <h2 class="text-xl font-semibold mt-8 mb-4 text-center">
-        Tableau des départements
-    </h2>
-    <div id="table-container" class="flex justify-center"></div>
-    <script src="/scripts/dept-score-table.js" type="module"></script>
-</Layout>
-    
+
+    <!-- Section Cartes -->
+    <section id="cartes" class="max-w-5xl mx-auto px-6 mb-20">
+        <div class="mb-12">
+            <div class="flex items-center gap-4 mb-6">
+                <span
+                    class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-600 text-white text-xl font-bold"
+                    >1</span
+                >
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+                    Cartographie de la Pauvreté et APL
+                </h2>
+            </div>
+        </div>
+
+        <div
+            class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
+        >
+            <div class="p-8 md:p-12">
+                <div class="mb-10">
+                    <div class="mb-10">
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            <a
+                                href="https://www.data.gouv.fr/datasets/laccessibilite-potentielle-localisee-apl/"
+                                target="_blank"
+                                class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors underline underline-offset-4"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-4 w-4"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    ></path>
+                                </svg>
+                                Source : data.gouv.fr
+                            </a>
+                        </p>
+
+                        <p
+                            class="text-gray-700 mb-6 leading-relaxed text-justify"
+                        >
+                            Cette première carte met en relation deux dimensions
+                            :
+                        </p>
+
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="inline-block w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"
+                                ></span>
+                                <span class="text-gray-700 leading-relaxed">
+                                    La <strong
+                                        class="font-semibold text-red-600"
+                                        >couleur rouge</strong
+                                    > indique le taux de pauvreté départemental,
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="inline-block w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 flex-shrink-0"
+                                ></span>
+                                <span class="text-gray-700 leading-relaxed">
+                                    L'<strong class="font-semibold"
+                                        >opacité</strong
+                                    > traduit le niveau d'accessibilité médicale
+                                    (APL).
+                                </span>
+                            </li>
+                        </ul>
+
+                        <p
+                            class="text-gray-700 mb-8 leading-relaxed text-justify bg-gray-50 p-6 rounded border-l-4 border-gray-300"
+                        >
+                            Les départements du Nord et du Sud-Est ainsi que la
+                            Corse se distinguent par une pauvreté plus forte
+                            combinée à une accessibilité médicale plutôt forte,
+                            tandis que le reste de la France se caractérisent
+                            par une pauvreté plus faible et de temps à autre une
+                            accessibilité médicale faible, voire insuffisante
+                            pour les pires cas.
+                        </p>
+
+                        <div
+                            class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded"
+                        >
+                            <div class="flex gap-4">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    class="stroke-blue-600 w-6 h-6 flex-shrink-0"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-bold text-blue-900 mb-2">
+                                        Remarque
+                                    </h4>
+                                    <p class="text-blue-800 leading-relaxed">
+                                        L'APL ne mesure pas la qualité des
+                                        soins, mais uniquement l'accessibilité
+                                        géographique. Un territoire rural peut
+                                        apparaître « défavorisé » malgré une
+                                        bonne offre relative à sa population.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        id="plot-container"
+                        class="flex justify-center min-h-[500px] bg-gray-50 rounded p-6"
+                    >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/scripts/pauvrete-apl.js" type="module"></script>
+
+        <!-- Section Graphiques -->
+        <section id="graphiques" class="max-w-5xl mx-auto px-6 mb-20">
+            <div class="mt-12 mb-12">
+                <div class="flex items-center gap-4 mb-6">
+                    <span
+                        class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-indigo-600 text-white text-xl font-bold"
+                        >2</span
+                    >
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+                        Analyses Graphiques
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Graph 2: Bar Plot -->
+            <div
+                class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-16"
+            >
+                <div class="p-8 md:p-12">
+                    <h3
+                        class="text-2xl md:text-3xl font-bold text-gray-900 mb-8"
+                    >
+                        Distribution APL par Département
+                    </h3>
+
+                    <div class="mb-10">
+                        <div class="mb-10">
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <a
+                                    href="https://www.data.gouv.fr/datasets/laccessibilite-potentielle-localisee-apl/"
+                                    target="_blank"
+                                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors underline underline-offset-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        ></path>
+                                    </svg>
+                                    Source : data.gouv.fr
+                                </a>
+                            </p>
+
+                            <p
+                                class="text-gray-700 mb-6 leading-relaxed text-justify bg-gray-50 p-6 rounded border-l-4 border-gray-300"
+                            >
+                                Un bar chart qui liste les départements selon
+                                leur APL. N'hésitez pas à sélectionner votre
+                                département au choix via le menu interactif pour
+                                le mettre en évidence.
+                            </p>
+
+                            <p
+                                class="text-gray-700 leading-relaxed text-justify"
+                            >
+                                Les départements d'Île-de-France, du Rhône et de
+                                la Haute-Garonne apparaissent nettement plus
+                                accessibles, tandis que ceux du centre et du
+                                nord-est sont en retrait. Cette représentation
+                                permet une comparaison simple et directe, utile
+                                pour repérer les extrêmes.
+                            </p>
+                        </div>
+
+                        <div
+                            id="barplot-container"
+                            class="flex flex-col items-center gap-6 min-h-[400px] bg-gray-50 rounded p-6"
+                        >
+                        </div>
+                    </div>
+                </div>
+
+                <script src="/scripts/apl-bar.js" type="module"></script>
+
+                <!-- Graph 3: Hospital Map -->
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-16"
+                >
+                    <div class="p-8 md:p-12">
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-gray-900 mb-8"
+                        >
+                            Densité Hospitalière par Département
+                        </h3>
+
+                        <div class="mb-10">
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <a
+                                    href="https://www.data.gouv.fr/datasets/sante-faire-le-pari-des-territoires-donnees-mobilisees"
+                                    target="_blank"
+                                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors underline underline-offset-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        ></path>
+                                    </svg>
+                                    Source : data.gouv.fr
+                                </a>
+                            </p>
+
+                            <p
+                                class="text-gray-700 mb-6 leading-relaxed text-justify bg-gray-50 p-6 rounded border-l-4 border-gray-300"
+                            >
+                                Cette carte illustre la densité hospitalière
+                                rapportée à la population. Les régions urbaines
+                                (Paris, Lyon, Marseille) ressortent avec une
+                                forte concentration, contrairement à certains
+                                territoires ruraux (Creuse, Lozère, Cantal).
+                            </p>
+
+                            <p
+                                class="text-gray-700 mb-8 leading-relaxed text-justify"
+                            >
+                                Les écarts sont considérables : certains
+                                départements comptent plus de 4 fois plus
+                                d'établissements hospitaliers par habitant que
+                                d'autres.
+                            </p>
+
+                            <div
+                                class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded"
+                            >
+                                <div class="flex gap-4">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        class="stroke-yellow-600 w-6 h-6 flex-shrink-0"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                                        ></path>
+                                    </svg>
+                                    <p class="text-yellow-800 leading-relaxed">
+                                        Les hôpitaux ne reflètent pas toute
+                                        l'offre de soins — la médecine de ville
+                                        et les établissements privés ne sont que
+                                        partiellement couverts.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            id="hospital-map-container"
+                            class="flex justify-center min-h-[500px] bg-gray-50 rounded p-6"
+                        >
+                        </div>
+                    </div>
+                </div>
+
+                <script src="/scripts/hospital-map.js" type="module"></script>
+
+                <!-- Graph 4: Discordance APL -->
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-16"
+                >
+                    <div class="p-8 md:p-12">
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-gray-900 mb-8"
+                        >
+                            Analyse de Discordance APL
+                        </h3>
+
+                        <div class="mb-10">
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <a
+                                    href="https://www.data.gouv.fr/datasets/laccessibilite-potentielle-localisee-apl/"
+                                    target="_blank"
+                                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors underline underline-offset-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        ></path>
+                                    </svg>
+                                    Source : data.gouv.fr
+                                </a>
+                            </p>
+
+                            <p
+                                class="text-gray-700 mb-6 leading-relaxed text-justify"
+                            >
+                                Pour évaluer la cohérence territoriale entre
+                                accessibilité médicale et offre hospitalière, un
+                                indicateur de discordance normalisée a été
+                                construit :
+                            </p>
+
+                            <div
+                                class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded border-l-4 border-blue-500 mb-8"
+                            >
+                                <p
+                                    class="font-mono text-center font-semibold text-gray-800"
+                                >
+                                    Discordance = (APL_normalisé –
+                                    Hôpitaux_normalisé)
+                                </p>
+                            </div>
+
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="inline-block w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"
+                                    ></span>
+                                    <span class="text-gray-700 leading-relaxed">
+                                        <strong
+                                            class="font-semibold text-red-600"
+                                            >Rouge</strong
+                                        > : zones où l'accessibilité médicale est
+                                        supérieure à la densité hospitalière (surdotation
+                                        médicale relative).
+                                    </span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="inline-block w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"
+                                    ></span>
+                                    <span class="text-gray-700 leading-relaxed">
+                                        <strong
+                                            class="font-semibold text-blue-600"
+                                            >Bleu</strong
+                                        > : zones où la densité hospitalière est
+                                        élevée mais l'accessibilité aux généralistes
+                                        reste faible (déséquilibre de proximité).
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <p
+                                class="text-gray-700 leading-relaxed text-justify bg-gray-50 p-6 rounded border-l-4 border-gray-300"
+                            >
+                                Certaines zones rurales (Massif central,
+                                Ardennes) sont fortement déficitaires.
+                                Inversement, les grandes métropoles présentent
+                                une offre hospitalière excédentaire mais un
+                                accès aux généralistes plus limité dans leur
+                                périphérie.
+                            </p>
+                        </div>
+
+                        <div
+                            id="plot-container-2"
+                            class="flex justify-center min-h-[400px] bg-gray-50 rounded p-6"
+                        >
+                        </div>
+                    </div>
+                </div>
+
+                <script src="/scripts/discordance-apl.js" type="module"
+                ></script>
+
+                <!-- Graph 5: Hospital Bar -->
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-16"
+                >
+                    <div class="p-8 md:p-12">
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-gray-900 mb-8"
+                        >
+                            Classement des Départements par Densité Hospitalière
+                        </h3>
+
+                        <div class="mb-10">
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <a
+                                    href="https://www.data.gouv.fr/datasets/laccessibilite-potentielle-localisee-apl/"
+                                    target="_blank"
+                                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors underline underline-offset-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        ></path>
+                                    </svg>
+                                    Source : data.gouv.fr
+                                </a>
+                            </p>
+
+                            <p
+                                class="text-gray-700 mb-6 leading-relaxed text-justify bg-gray-50 p-6 rounded border-l-4 border-gray-300"
+                            >
+                                Les départements urbains dominent le classement,
+                                alors que les départements du centre et du
+                                nord-est sont presque totalement absents.
+                            </p>
+
+                            <p
+                                class="text-gray-700 leading-relaxed text-justify"
+                            >
+                                Cela souligne la fracture territoriale de
+                                l'accès aux soins de premier recours, mais aussi
+                                du manque de population de ces départements,
+                                jugés moins attractifs par ceux-ci.
+                            </p>
+                        </div>
+
+                        <div
+                            class="flex justify-center min-h-[400px] bg-gray-50 rounded p-6"
+                            id="plot-container-3"
+                        >
+                        </div>
+                    </div>
+                </div>
+
+                <script src="/scripts/hospital-bar.js" type="module"></script>
+
+                <!-- Graph 6: All Hospitals -->
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-16"
+                >
+                    <div class="p-8 md:p-12">
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-gray-900 mb-8"
+                        >
+                            Implantation des Établissements Hospitaliers
+                        </h3>
+
+                        <div class="mb-10">
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                <a
+                                    href="https://defis.data.gouv.fr/datasets/67e43007cd5e91b9fdcbc7b3"
+                                    target="_blank"
+                                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors underline underline-offset-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        ></path>
+                                    </svg>
+                                    Source : defis.data.gouv.fr
+                                </a>
+                            </p>
+
+                            <p
+                                class="text-gray-700 mb-6 leading-relaxed text-justify bg-gray-50 p-6 rounded border-l-4 border-gray-300"
+                            >
+                                Cette carte géographique représente
+                                l'implantation des établissements hospitaliers
+                                publics et privés sur l'ensemble du territoire
+                                français. Chaque point rouge correspond à un
+                                hôpital issu de la base FINESS (Fichier National
+                                des Établissements Sanitaires et Sociaux),
+                                géolocalisé selon ses coordonnées réelles.
+                            </p>
+
+                            <p
+                                class="text-gray-700 mb-6 leading-relaxed text-justify"
+                            >
+                                La carte révèle une forte concentration
+                                d'établissements dans les grandes aires urbaines
+                                — notamment en Île-de-France, dans les
+                                métropoles régionales (Lyon, Marseille, Lille,
+                                Toulouse) et le littoral atlantique. À
+                                l'inverse, les zones rurales et montagneuses
+                                (Massif central, Alpes, Pyrénées, Creuse,
+                                Lozère) apparaissent nettement moins dotées.
+                            </p>
+
+                            <p
+                                class="text-gray-700 leading-relaxed text-justify"
+                            >
+                                Cette répartition illustre une logique de
+                                centralisation hospitalière, souvent liée à la
+                                densité de population et à la présence de
+                                centres universitaires.
+                            </p>
+                        </div>
+
+                        <div
+                            class="flex justify-center min-h-[400px] bg-gray-50 rounded p-6"
+                            id="plot-container-4"
+                        >
+                        </div>
+                    </div>
+                </div>
+
+                <script src="/scripts/all-hospital.js" type="module"></script>
+            </div>
+
+            <!-- Section Tableau -->
+            <section id="tableau" class="max-w-5xl mx-auto px-6 mb-20">
+                <div class="border-t border-gray-200 my-16"></div>
+
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span
+                            class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-600 text-white text-xl font-bold"
+                            >3</span
+                        >
+                        <h2
+                            class="text-3xl md:text-4xl font-bold text-gray-900"
+                        >
+                            Tableau Synthétique des Départements
+                        </h2>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
+                >
+                    <div class="p-8 md:p-12">
+                        <div class="mb-10">
+                            <p
+                                class="text-gray-600 mb-6 leading-relaxed flex flex-wrap gap-4"
+                            >
+                                <a
+                                    href="https://www.data.gouv.fr/datasets/sante-faire-le-pari-des-territoires-donnees-mobilisees"
+                                    target="_blank"
+                                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors underline underline-offset-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        ></path>
+                                    </svg>
+                                    Source 1 : data.gouv.fr
+                                </a>
+                                <a
+                                    href="https://www.data.gouv.fr/datasets/laccessibilite-potentielle-localisee-apl/"
+                                    target="_blank"
+                                    class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium transition-colors underline underline-offset-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                        ></path>
+                                    </svg>
+                                    Source 2 : data.gouv.fr
+                                </a>
+                            </p>
+
+                            <p
+                                class="text-gray-700 mb-6 leading-relaxed text-justify"
+                            >
+                                Ce tableau synthétise les principaux indicateurs
+                                calculés :
+                            </p>
+
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="inline-block w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"
+                                    ></span>
+                                    <span class="text-gray-700 leading-relaxed"
+                                        >APL moyenne,</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="inline-block w-1.5 h-1.5 bg-indigo-500 rounded-full mt-2 flex-shrink-0"
+                                    ></span>
+                                    <span class="text-gray-700 leading-relaxed"
+                                        >Taux de pauvreté (%),</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="inline-block w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 flex-shrink-0"
+                                    ></span>
+                                    <span class="text-gray-700 leading-relaxed"
+                                        >Hôpitaux / 100 000 habitants,</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span
+                                        class="inline-block w-1.5 h-1.5 bg-cyan-500 rounded-full mt-2 flex-shrink-0"
+                                    ></span>
+                                    <span class="text-gray-700 leading-relaxed"
+                                        >Discordance (APL – Hôpitaux
+                                        normalisés).</span
+                                    >
+                                </li>
+                            </ul>
+
+                            <p
+                                class="text-gray-700 leading-relaxed text-justify bg-gray-50 p-6 rounded border-l-4 border-gray-300"
+                            >
+                                Il permet une lecture plus simple pour chaque
+                                département à la fois.
+                            </p>
+                        </div>
+
+                        <div
+                            id="table-container"
+                            class="overflow-x-auto bg-gray-50 rounded p-6"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <script src="/scripts/dept-score-table.js" type="module"></script>
+
+            <!-- Conclusion Section -->
+            <section id="conclusion" class="max-w-5xl mx-auto px-6 mb-20">
+                <div class="border-t border-gray-200 my-16"></div>
+
+                <div class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <span
+                            class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-600 text-white text-xl font-bold"
+                            >4</span
+                        >
+                        <h2
+                            class="text-3xl md:text-4xl font-bold text-gray-900"
+                        >
+                            Analyse et Conclusion
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Analysis Card -->
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-12"
+                >
+                    <div class="p-8 md:p-12">
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-gray-900 mb-8"
+                        >
+                            Analyse et interprétation
+                        </h3>
+
+                        <div class="mb-10">
+                            <p
+                                class="text-gray-700 mb-8 leading-relaxed text-justify"
+                            >
+                                Les visualisations révèlent plusieurs problèmes
+                                :
+                            </p>
+
+                            <ul class="space-y-6 mb-10">
+                                <li
+                                    class="flex items-start gap-4 bg-red-50 p-6 rounded border-l-4 border-red-500"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                                        ></path>
+                                    </svg>
+                                    <span class="text-gray-700 leading-relaxed">
+                                        Une <strong class="font-semibold"
+                                            >corrélation négative</strong
+                                        > entre pauvreté et accessibilité médicale.
+                                    </span>
+                                </li>
+                                <li
+                                    class="flex items-start gap-4 bg-yellow-50 p-6 rounded border-l-4 border-yellow-500"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6 text-yellow-600 flex-shrink-0 mt-0.5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                                        ></path>
+                                    </svg>
+                                    <span class="text-gray-700 leading-relaxed">
+                                        Une <strong class="font-semibold"
+                                            >polarisation métropolitaine</strong
+                                        > : l'offre de soins se concentre dans les
+                                        grandes villes.
+                                    </span>
+                                </li>
+                                <li
+                                    class="flex items-start gap-4 bg-blue-50 p-6 rounded border-l-4 border-blue-500"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6 text-blue-600 flex-shrink-0 mt-0.5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                        ></path>
+                                    </svg>
+                                    <span class="text-gray-700 leading-relaxed">
+                                        Des <strong class="font-semibold"
+                                            >zones de discordance</strong
+                                        > où l'offre hospitalière ne compense pas
+                                        un faible accès aux généralistes.
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <p
+                                class="text-gray-700 leading-relaxed text-justify bg-gray-50 p-6 rounded border-l-4 border-gray-300"
+                            >
+                                Ces différents constats et faiblesses pourraient
+                                être évités, si les installations médicales dans
+                                les zones rurales se faisaient plus nombreuses.
+                                Celles-ci pourraient également être évitées s'il
+                                y avait des adaptations des ressources
+                                hospitalières en prenant en compte la
+                                démographie actuelle, et future par rapport aux
+                                différentes projections possibles par
+                                départements.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biases and Limits Card -->
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-12"
+                >
+                    <div class="p-8 md:p-12">
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-yellow-700 mb-8"
+                        >
+                            Potentiels biais et limites
+                        </h3>
+
+                        <div
+                            class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded mb-8"
+                        >
+                            <div class="flex gap-4">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    class="stroke-yellow-600 w-6 h-6 flex-shrink-0"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                                    ></path>
+                                </svg>
+                                <span class="font-semibold text-yellow-900">
+                                    Attention aux limites méthodologiques
+                                </span>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="inline-block w-1.5 h-1.5 bg-yellow-500 rounded-full mt-2 flex-shrink-0"
+                                ></span>
+                                <span class="text-gray-700 leading-relaxed">
+                                    L'échelle départementale masque les
+                                    disparités locales.
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="inline-block w-1.5 h-1.5 bg-yellow-500 rounded-full mt-2 flex-shrink-0"
+                                ></span>
+                                <span class="text-gray-700 leading-relaxed">
+                                    L'APL ne mesure pas la qualité ni la
+                                    spécialisation des soins.
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="inline-block w-1.5 h-1.5 bg-yellow-500 rounded-full mt-2 flex-shrink-0"
+                                ></span>
+                                <span class="text-gray-700 leading-relaxed">
+                                    Les données FINESS peuvent sous-représenter
+                                    certaines structures privées.
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span
+                                    class="inline-block w-1.5 h-1.5 bg-yellow-500 rounded-full mt-2 flex-shrink-0"
+                                ></span>
+                                <span class="text-gray-700 leading-relaxed">
+                                    Les années de référence diffèrent légèrement
+                                    entre sources.
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Conclusion Card -->
+                <div
+                    class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-sm border border-blue-200 overflow-hidden mb-12"
+                >
+                    <div class="p-8 md:p-12">
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-blue-900 mb-8"
+                        >
+                            Conclusion
+                        </h3>
+
+                        <div class="mb-10">
+                            <p
+                                class="text-gray-700 mb-8 leading-relaxed text-justify"
+                            >
+                                Ce travail montre que les inégalités
+                                territoriales de santé sont mesurables et
+                                visibles à partir de données ouvertes. Grâce à
+                                cette étude, on peut se poser diverses questions
+                                quant à la santé pour chaque département et des
+                                habitants.
+                            </p>
+
+                            <div
+                                class="bg-white rounded-lg p-8 mb-8 shadow-sm border border-gray-200"
+                            >
+                                <h4
+                                    class="font-bold text-xl md:text-2xl mb-6 text-gray-900"
+                                >
+                                    En résumé :
+                                </h4>
+
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div
+                                        class="flex items-start gap-4 bg-green-50 p-5 rounded border-l-4 border-green-500"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            ></path>
+                                        </svg>
+                                        <p
+                                            class="text-gray-700 leading-relaxed"
+                                        >
+                                            Les inégalités territoriales de
+                                            santé sont visibles et mesurables.
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        class="flex items-start gap-4 bg-green-50 p-5 rounded border-l-4 border-green-500"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            ></path>
+                                        </svg>
+                                        <p
+                                            class="text-gray-700 leading-relaxed"
+                                        >
+                                            Les politiques d'aménagement et de
+                                            santé doivent être pensées
+                                            conjointement.
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        class="flex items-start gap-4 bg-green-50 p-5 rounded border-l-4 border-green-500"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            ></path>
+                                        </svg>
+                                        <p
+                                            class="text-gray-700 leading-relaxed"
+                                        >
+                                            L'offre de soins reste concentrée
+                                            dans les grandes agglomérations.
+                                        </p>
+                                    </div>
+
+                                    <div
+                                        class="flex items-start gap-4 bg-green-50 p-5 rounded border-l-4 border-green-500"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            ></path>
+                                        </svg>
+                                        <p
+                                            class="text-gray-700 leading-relaxed"
+                                        >
+                                            Les données ouvertes permettent déjà
+                                            d'esquisser des diagnostics
+                                            pertinents, mais nécessitent une
+                                            interprétation prudente et
+                                            contextualisée.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solutions Card -->
+                <div
+                    class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
+                >
+                    <div class="p-8 md:p-12">
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-green-700 mb-8"
+                        >
+                            Solutions possibles
+                        </h3>
+
+                        <div
+                            class="bg-green-50 border-l-4 border-green-400 p-6 rounded mb-8"
+                        >
+                            <div class="flex gap-4">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    class="stroke-green-600 w-6 h-6 flex-shrink-0"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path>
+                                </svg>
+                                <span class="font-semibold text-green-900">
+                                    Pistes d'action pour réduire les inégalités
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8 mb-8">
+                            <div
+                                class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200"
+                            >
+                                <div class="text-center mb-4">
+                                    <div class="text-5xl mb-4">🏥</div>
+                                    <h4
+                                        class="font-bold text-lg mb-3 text-gray-900"
+                                    >
+                                        Installation médicale
+                                    </h4>
+                                    <p class="text-gray-700 leading-relaxed">
+                                        Soutenir l'installation de médecins dans
+                                        les zones rurales
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 border border-indigo-200"
+                            >
+                                <div class="text-center mb-4">
+                                    <div class="text-5xl mb-4">💻</div>
+                                    <h4
+                                        class="font-bold text-lg mb-3 text-gray-900"
+                                    >
+                                        Télémédecine
+                                    </h4>
+                                    <p class="text-gray-700 leading-relaxed">
+                                        Développer la télémédecine dans les
+                                        territoires sous-dotés
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div
+                                class="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-6 border border-emerald-200"
+                            >
+                                <div class="text-center mb-4">
+                                    <div class="text-5xl mb-4">📊</div>
+                                    <h4
+                                        class="font-bold text-lg mb-3 text-gray-900"
+                                    >
+                                        Financement adapté
+                                    </h4>
+                                    <p class="text-gray-700 leading-relaxed">
+                                        Adapter les politiques de financement
+                                        hospitalier selon la structure
+                                        socio-démographique
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p
+                            class="text-gray-700 leading-relaxed text-center italic bg-green-50 p-6 rounded border-l-4 border-green-400"
+                        >
+                            Tout ceci pourrait régler la majorité des problèmes
+                            vus au cours de ces études, des solutions qui sont
+                            théoriquement possibles.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+    </Layout>
